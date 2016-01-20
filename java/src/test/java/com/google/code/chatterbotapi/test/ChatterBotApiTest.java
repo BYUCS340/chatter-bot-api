@@ -1,5 +1,7 @@
 package com.google.code.chatterbotapi.test;
 
+import java.util.Scanner;
+
 import com.google.code.chatterbotapi.*;
 
 /*
@@ -30,15 +32,21 @@ public class ChatterBotApiTest {
         ChatterBot bot2 = factory.create(ChatterBotType.PANDORABOTS, "b0dafd24ee35a477");
         ChatterBotSession bot2session = bot2.createSession();
 
-        String s = "Hi";
-        while (true) {
+        String yourText = "Hi";
+        String s = "";
+        Scanner input = new Scanner(System.in);
+        while (yourText != "") {
 
-            System.out.println("bot1> " + s);
+            System.out.print("you> ");
+            yourText = input.nextLine();
 
-            s = bot2session.think(s);
-            System.out.println("bot2> " + s);
+            s = bot2session.think(yourText);
+            System.out.println("PANDORA> " + s);
 
-            s = bot1session.think(s);
+            s = bot1session.think(yourText);
+            System.out.println("CLEVER> " + s);
+            
         }
+        input.close();
     }
 }
